@@ -1,9 +1,13 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
   <mat-tab label="All">
     <ng-template [ngTemplateOutlet]="all"></ng-template>
   </mat-tab>
-  <mat-tab label="Practice"> Content 2 </mat-tab>
-  <mat-tab label="Game"> Content 3 </mat-tab>
+  <mat-tab label="Practice">
+    <ng-template [ngTemplateOutlet]="all"></ng-template>
+  </mat-tab>
+  <mat-tab label="Game">
+    <ng-template [ngTemplateOutlet]="all"></ng-template>
+  </mat-tab>
 </mat-tab-group>
 
 <ng-template #all>
@@ -14,7 +18,7 @@
     }
   </mat-list>
   } @else {
-  <p class="no-sessions">No sessions yet.</p>
+  <p class="no-sessions">No {{ filter === 'all' ? 'sessions': `${filter}s` }} yet.</p>
   }
 </ng-template>
 

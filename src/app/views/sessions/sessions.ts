@@ -28,6 +28,16 @@ export class Sessions {
     this.data.init();
   }
 
+  onTabChange(event: { index: number }) {
+    if (event.index === 0) {
+      this.filter = 'all';
+    } else if (event.index === 1) {
+      this.filter = 'practice';
+    } else {
+      this.filter = 'game';
+    }
+  }
+
   filteredSessions() {
     const list = this.sessions() ?? [];
     return this.filter === 'all' ? list : list.filter(s => s.type === this.filter);
