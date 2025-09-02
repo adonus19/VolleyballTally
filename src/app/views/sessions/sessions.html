@@ -1,1 +1,51 @@
-<p>sessions works!</p>
+<mat-tab-group>
+  <mat-tab label="All">
+    <ng-template [ngTemplateOutlet]="all"></ng-template>
+  </mat-tab>
+  <mat-tab label="Practice"> Content 2 </mat-tab>
+  <mat-tab label="Game"> Content 3 </mat-tab>
+</mat-tab-group>
+
+<ng-template #all>
+  @if((sessions() || []).length) {
+  <mat-list>
+    @for(session of filteredSessions(); track session.date) {
+    <mat-list-item matButton></mat-list-item>
+    }
+  </mat-list>
+  } @else {
+  <p class="no-sessions">No sessions yet.</p>
+  }
+</ng-template>
+
+<button
+  mat-fab
+  color="primary"
+  aria-label="Create"
+  [matMenuTriggerFor]="fabMenu"
+  class="vt-fab"
+><mat-icon>add</mat-icon>
+</button>
+
+<mat-menu
+  #fabMenu
+  xPosition="before"
+  yPosition="above"
+>
+  <button
+    mat-menu-item
+    (click)="create('practice')"
+    aria-label="New Practice"
+  >
+    <mat-icon>sports_volleyball</mat-icon>
+    <span>New Practice</span>
+  </button>
+  <button
+    mat-menu-item
+    (click)="create('game')"
+    aria-label="New Game"
+  >
+    <mat-icon>stadium</mat-icon>
+    <span>New Game</span>
+  </button>
+</mat-menu>

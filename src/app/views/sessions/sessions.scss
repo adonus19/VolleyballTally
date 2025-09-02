@@ -1,0 +1,11 @@
+.no-sessions {
+  padding: 3rem;
+  text-align: center;
+}
+
+.vt-fab {
+  position: fixed;
+  right: 2rem;
+  bottom: calc(var(--app-bottom-bar-height, 4rem) + 2rem);
+  z-index: 110;
+}

@@ -1,0 +1,52 @@
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 1 auto;
+  padding-bottom: var(--app-bottom-bar-height);
+}
+
+.app-bottom-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  height: var(--app-bottom-bar-height);
+  border-top: 1px solid rgba(0, 0, 0, .08);
+  background: color-mix(in srgb, white 92%, transparent);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.5rem;
+}
+
+.app-nav a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  font-weight: 200;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: rgb(92, 92, 92);
+  // gap: .25rem;
+  // padding: .5rem 0;
+}
+
+.app-nav a.active {
+  color: maroon;
+}
+
+
+.toolbar {
+  flex: 1 1 auto;
+}
+
