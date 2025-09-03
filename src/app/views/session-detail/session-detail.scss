@@ -1,5 +1,17 @@
+@use '@angular/material' as mat;
+
 .content {
   padding: 0 1rem;
+}
+
+.delete {
+  margin-top: 1rem;
+  width: 100%;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  @include mat.button-overrides((
+    filled-container-color: rgba(197, 34, 34, 1),
+    filled-label-text-color: white
+  ));
 }
 
 mat-card {

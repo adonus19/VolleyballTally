@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    color: white;
+    background-color: red;
+  }
+}

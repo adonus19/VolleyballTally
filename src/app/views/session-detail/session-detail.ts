@@ -1,23 +1,26 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButton } from "@angular/material/button";
+import { MatDialog } from '@angular/material/dialog';
 
 import { DataService } from '../../services/data.service';
 import { LongPressDirective } from '../../shared/long-press.directive';
+import { DeleteDialog } from '../../shared/delete-dialog/delete-dialog';
 
 @Component({
   selector: 'app-session-detail',
-  imports: [DatePipe, LongPressDirective, MatGridListModule, MatCardModule, MatRippleModule, MatButton],
+  imports: [DatePipe, LongPressDirective, MatGridListModule, MatCardModule, MatRippleModule, MatButton, DeleteDialog],
   templateUrl: './session-detail.html',
   styleUrl: './session-detail.scss'
 })
 export class SessionDetail {
   private route = inject(ActivatedRoute);
   private data = inject(DataService);
+  readonly dialog = inject(MatDialog);
   id = this.route.snapshot.paramMap.get('id')!;
   session = computed(() => this.data.sessions().find(s => s.id === this.id)!);
   players = computed(() => this.data.players());
@@ -58,7 +61,22 @@ export class SessionDetail {
   }
 
   deleteSession() {
-    if (confirm('Delete this session? This cannot be undone.')) this.data.deleteSession(this.session().id);
+    this.openDialog();
+    // this.data.deleteSession(this.session().id);
     history.back();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        console.log(result);
+        this.data.deleteSession(this.session().id);
+        history.back();
+      }
+    });
   }
 }
