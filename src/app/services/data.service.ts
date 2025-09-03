@@ -40,26 +40,34 @@ export class DataService {
   // Sessions
   addSession(type: SessionType, title?: string, dateISO = new Date().toISOString()): string {
     const s: Session = { id: uuid(), type, date: dateISO, title: title?.trim() || undefined, points: [] };
-    this.sessions.update(list => [s, ...list]); this.persist(); return s.id;
+    this.sessions.update(list => [s, ...list]); this.persist();
+    return s.id;
   }
+
   updateSession(updated: Session): void {
     this.sessions.update(list => list.map(s => s.id === updated.id ? updated : s)); this.persist();
   }
+
   deleteSession(id: string): void {
     this.sessions.update(list => list.filter(s => s.id !== id)); this.persist();
   }
 
   // Points
   awardPoint(sessionId: string, playerId: string, note?: string): void {
-    const s = this.sessions().find(x => x.id === sessionId); if (!s) return;
+    const s = this.sessions().find(x => x.id === sessionId);
+    if (!s) return;
     const entry: PointEntry = { id: uuid(), playerId, timestamp: Date.now(), note: note?.slice(0, 100) || undefined };
     s.points = [...s.points, entry];
     this.updateSession(s);
   }
+
   decrementPoint(sessionId: string, playerId: string): void {
-    const s = this.sessions().find(x => x.id === sessionId); if (!s) return;
+    const s = this.sessions().find(x => x.id === sessionId);
+    if (!s) return;
+
     const idx = [...s.points].reverse().findIndex(p => p.playerId === playerId);
     if (idx === -1) return;
+
     const removeAt = s.points.length - 1 - idx;
     s.points = s.points.splice(removeAt, 1);
     this.updateSession(s);
@@ -71,11 +79,13 @@ export class DataService {
     for (const p of session.points) m.set(p.playerId, (m.get(p.playerId) ?? 0) + 1);
     return m;
   }
+
   getFirstPointTimeByPlayer(session: Session): Map<string, number> {
     const m = new Map<string, number>();
     for (const p of session.points) if (!m.has(p.playerId)) m.set(p.playerId, p.timestamp);
     return m;
   }
+
   getTopForSession(session: Session, topN: number): { playerId: string; count: number; firstTs: number }[] {
     const counts = this.getSessionCounts(session);
     const firsts = this.getFirstPointTimeByPlayer(session);
@@ -84,6 +94,7 @@ export class DataService {
       .sort((a, b) => b.count - a.count || a.firstTs - b.firstTs)
       .slice(0, Math.max(0, topN));
   }
+
   getTotals(): { playerId: string; count: number }[] {
     const m = new Map<string, number>();
     for (const s of this.sessions()) for (const p of s.points) m.set(p.playerId, (m.get(p.playerId) ?? 0) + 1);

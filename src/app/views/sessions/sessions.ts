@@ -2,7 +2,7 @@ import { Component, OnInit, computed, inject } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'
-import { DatePipe, NgTemplateOutlet } from '@angular/common';
+import { DatePipe, NgTemplateOutlet, TitleCasePipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -12,7 +12,7 @@ import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-sessions',
-  imports: [FormsModule, DatePipe, MatTabsModule, NgTemplateOutlet, MatDividerModule, MatListModule, MatButtonModule, MatMenuModule, MatIcon],
+  imports: [FormsModule, DatePipe, MatTabsModule, NgTemplateOutlet, MatDividerModule, MatListModule, MatButtonModule, MatMenuModule, MatIcon, TitleCasePipe],
   templateUrl: './sessions.html',
   styleUrl: './sessions.scss'
 })

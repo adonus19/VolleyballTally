@@ -14,7 +14,14 @@
   @if((sessions() || []).length) {
   <mat-list>
     @for(session of filteredSessions(); track session.date) {
-    <mat-list-item matButton></mat-list-item>
+    <mat-list-item>
+      <button
+        matButton="filled"
+        [color]="session.type === 'practice' ? 'primary' : 'tertiary'"
+      >{{ session.type | titlecase }}</button>
+      <span class="date">{{ session.date | date:'shortDate' }}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
     }
   </mat-list>
   } @else {
