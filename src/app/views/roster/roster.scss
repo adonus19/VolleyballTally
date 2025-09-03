@@ -1,0 +1,32 @@
+.full-width {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 1rem;
+
+  .submit {
+    flex: 2 1 auto;
+  }
+
+  .cancel {
+    flex: 1 1 auto;
+  }
+}
+
+.player-table {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.mat-column-player,
+.mat-column-number {
+  width: 64px;
+}
+
+.mat-column-edit {
+  text-align: center;
+  width: 32px;
+}
