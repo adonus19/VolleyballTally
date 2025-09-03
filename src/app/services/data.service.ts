@@ -45,7 +45,8 @@ export class DataService {
   }
 
   updateSession(updated: Session): void {
-    this.sessions.update(list => list.map(s => s.id === updated.id ? updated : s)); this.persist();
+    this.sessions.update(list => list.map(s => s.id === updated.id ? updated : s));
+    this.persist();
   }
 
   deleteSession(id: string): void {
@@ -55,9 +56,12 @@ export class DataService {
   // Points
   awardPoint(sessionId: string, playerId: string, note?: string): void {
     const s = this.sessions().find(x => x.id === sessionId);
+    console.log('session', s);
     if (!s) return;
     const entry: PointEntry = { id: uuid(), playerId, timestamp: Date.now(), note: note?.slice(0, 100) || undefined };
+    console.log('entry', entry);
     s.points = [...s.points, entry];
+    console.log('points', s.points);
     this.updateSession(s);
   }
 
@@ -69,7 +73,7 @@ export class DataService {
     if (idx === -1) return;
 
     const removeAt = s.points.length - 1 - idx;
-    s.points = s.points.splice(removeAt, 1);
+    s.points.splice(removeAt, 1);
     this.updateSession(s);
   }
 

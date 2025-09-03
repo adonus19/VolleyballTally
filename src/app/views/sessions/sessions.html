@@ -14,7 +14,7 @@
   @if((sessions() || []).length) {
   <mat-list>
     @for(session of filteredSessions(); track session.date) {
-    <mat-list-item>
+    <mat-list-item (click)="open(session.id)">
       <button
         matButton="filled"
         [color]="session.type === 'practice' ? 'primary' : 'tertiary'"
