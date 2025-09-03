@@ -84,55 +84,66 @@
   </div>
 </form>
 
-<table
-  mat-table
-  [dataSource]="players()"
-  class="player-table"
->
-  <ng-container matColumnDef="player">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-    > Player </th>
-    <td
-      mat-cell
-      *matCellDef="let player"
-    >{{ player.name }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="number">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-    > Jersey # </th>
-    <td
-      mat-cell
-      *matCellDef="let player"
-    >{{ player.number }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="edit">
-    <th
-      mat-header-cell
-      *matHeaderCellDef
-    > Edit </th>
-    <td
-      mat-cell
-      *matCellDef="let player"
+<div class="table-container">
+  <table
+    mat-table
+    [dataSource]="players()"
+    class="player-table"
+  >
+    <ng-container
+      matColumnDef="player"
+      sticky="true"
     >
-      <button
-        matIconButton
-        (click)="editPlayer(player)"
-      ><mat-icon>edit</mat-icon></button>
-    </td>
-  </ng-container>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      > Player </th>
+      <td
+        mat-cell
+        *matCellDef="let player"
+      >{{ player.name }}</td>
+    </ng-container>
 
-  <tr
-    mat-header-row
-    *matHeaderRowDef="displayedColumns"
-  ></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: displayedColumns;"
-  ></tr>
-</table>
+    <ng-container
+      matColumnDef="number"
+      sticky="true"
+    >
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      > Jersey # </th>
+      <td
+        mat-cell
+        *matCellDef="let player"
+      >{{ player.number }}</td>
+    </ng-container>
+
+    <ng-container
+      matColumnDef="edit"
+      sticky="true"
+    >
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      > Edit </th>
+      <td
+        mat-cell
+        *matCellDef="let player"
+      >
+        <button
+          matIconButton
+          (click)="editPlayer(player)"
+        ><mat-icon>edit</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  </table>
+</div>
