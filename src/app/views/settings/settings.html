@@ -1,1 +1,12 @@
-<p>settings works!</p>
+<section style="padding:16px">
+  <h1 style="margin:0 0 12px; font: 600 20px/1.2 system-ui">Settings</h1>
+  <div style="opacity:.75; margin-bottom:12px">PWA</div>
+  @if (canInstall()) {
+  <button
+    mat-stroked-button
+    (click)="install()"
+  >Install app</button>
+  } @else {
+  <div style="opacity:.6;">Install prompt not available</div>
+  }
+</section>

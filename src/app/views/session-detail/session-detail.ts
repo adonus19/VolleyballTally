@@ -1,5 +1,4 @@
 import { Component, computed, inject, ViewChild } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -8,12 +7,11 @@ import { MatButton } from "@angular/material/button";
 import { MatDialog } from '@angular/material/dialog';
 
 import { DataService } from '../../services/data.service';
-import { LongPressDirective } from '../../shared/long-press.directive';
 import { DeleteDialog } from '../../shared/delete-dialog/delete-dialog';
 
 @Component({
   selector: 'app-session-detail',
-  imports: [DatePipe, LongPressDirective, MatGridListModule, MatCardModule, MatRippleModule, MatButton, DeleteDialog],
+  imports: [MatGridListModule, MatCardModule, MatRippleModule, MatButton],
   templateUrl: './session-detail.html',
   styleUrl: './session-detail.scss'
 })
