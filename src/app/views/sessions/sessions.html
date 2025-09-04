@@ -23,9 +23,10 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     }
+    @if (!filteredSessions().length) {
+    <p class="no-sessions">No {{ filter === 'all' ? 'sessions': `${filter}s` }} yet.</p>
+    }
   </mat-list>
-  } @else {
-  <p class="no-sessions">No {{ filter === 'all' ? 'sessions': `${filter}s` }} yet.</p>
   }
 </ng-template>
 
@@ -35,7 +36,9 @@
   aria-label="Create"
   [matMenuTriggerFor]="fabMenu"
   class="vt-fab"
-><mat-icon>add</mat-icon>
+><mat-icon><span class="material-symbols-outlined">
+      add
+    </span></mat-icon>
 </button>
 
 <mat-menu
@@ -48,7 +51,9 @@
     (click)="create('practice')"
     aria-label="New Practice"
   >
-    <mat-icon>sports_volleyball</mat-icon>
+    <mat-icon><span class="material-symbols-outlined">
+        exercise
+      </span></mat-icon>
     <span>New Practice</span>
   </button>
   <button
@@ -56,7 +61,9 @@
     (click)="create('game')"
     aria-label="New Game"
   >
-    <mat-icon>stadium</mat-icon>
+    <mat-icon><span class="material-symbols-outlined">
+        sports_volleyball
+      </span></mat-icon>
     <span>New Game</span>
   </button>
 </mat-menu>
