@@ -1,0 +1,32 @@
+
+  mat-list-item:nth-child(1) {
+    background-color: gold;
+  }
+
+  mat-list-item:nth-child(2) {
+    background-color: silver;
+  }
+
+  mat-list-item:nth-child(3) {
+    background-color: #CD7F32;
+  }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 100%;
+
+    .name {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: start;
+    }
+
+    .points {
+      grid-column: 3;
+      justify-self: end;
+    }
+  }
+

@@ -1,1 +1,38 @@
-<p>leaderboard works!</p>
+<div class="content">
+  @if (rows().length) {
+  <mat-list>
+    @for (row of rows(); track $index; let i = $index) {
+    <mat-list-item>
+      <mat-icon
+        matListItemIcon
+        class="place"
+      >
+        @if (i === 0) {
+        <span class="material-symbols-outlined">
+          trophy
+        </span>
+        } @else if (i === 1) {
+        <span class="material-symbols-outlined">
+          workspace_premium
+        </span>
+        } @else if (i === 2) {
+        <span class="material-symbols-outlined">
+          license
+        </span>
+        }
+      </mat-icon>
+      <div
+        matListItemLine
+        class="grid-container"
+      >
+        <span class="name">{{ nameFor(row.playerId )}}</span>
+        <mat-chip class="points">Total: {{ row.count }}</mat-chip>
+        <!-- <p class="points">{{ row.count }}</p> -->
+        <!-- <p matListItemLine>
+        </p> -->
+      </div>
+    </mat-list-item>
+    }
+  </mat-list>
+  }
+</div>
