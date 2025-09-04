@@ -16,7 +16,9 @@
       aria-label="Clear"
       (click)="playerForm.get('firstName')?.reset()"
     >
-      <mat-icon>close</mat-icon>
+      <mat-icon><span class="material-symbols-outlined">
+          close
+        </span></mat-icon>
     </button>
     }
     @if (playerForm.get('firstName')?.hasError('required')) {
@@ -38,7 +40,9 @@
       aria-label="Clear"
       (click)="playerForm.get('lastName')?.reset()"
     >
-      <mat-icon>close</mat-icon>
+      <mat-icon><span class="material-symbols-outlined">
+          close
+        </span></mat-icon>
     </button>
     }
     @if (playerForm.get('lastName')?.hasError('required')) {
@@ -60,7 +64,9 @@
       aria-label="Clear"
       (click)="playerForm.get('jersey')?.reset()"
     >
-      <mat-icon>close</mat-icon>
+      <mat-icon><span class="material-symbols-outlined">
+          close
+        </span></mat-icon>
     </button>
     }
     @if (playerForm.get('jersey')?.hasError('required')) {
